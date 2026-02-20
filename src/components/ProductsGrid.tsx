@@ -112,21 +112,6 @@ const spices: Spice[] = [
   },
 ];
 
-function FlameIcons({ count }: { count: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <span
-          key={i}
-          className={`text-sm ${i < count ? `flame-${Math.min(count, 5)}` : "text-gray-300"}`}
-        >
-          🔥
-        </span>
-      ))}
-    </div>
-  );
-}
-
 function SpiceCard({ spice, index }: { spice: Spice; index: number }) {
   const [showTip, setShowTip] = useState(false);
 
@@ -156,11 +141,6 @@ function SpiceCard({ spice, index }: { spice: Spice; index: number }) {
             className="object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
-
-          {/* Heat badge */}
-          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full px-2 py-1 shadow">
-            <FlameIcons count={spice.heat} />
-          </div>
 
           {/* Recipe tip overlay */}
           <m.div

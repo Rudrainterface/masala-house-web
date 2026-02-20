@@ -179,18 +179,6 @@ export default function RecipesCarousel() {
                       <span>⏱ {recipe.cookTime}</span>
                       <span>🍽 {recipe.servings} servings</span>
                     </div>
-
-                    {/* CTA */}
-                    <m.a
-                      href={`https://wa.me/919885594984?text=${encodeURIComponent(`Hi! I'd like the recipe for ${recipe.name} and the spices needed.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-maroon font-bold px-8 py-3 rounded-full transition-all shadow-lg"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      📄 Get Recipe + Spice Kit
-                    </m.a>
                   </div>
                 </div>
               </div>

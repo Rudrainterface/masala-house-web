@@ -1,6 +1,7 @@
 "use client";
 
 import { m, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 type TabKey = "powders" | "batters" | "dryfruits";
@@ -10,6 +11,7 @@ interface SpecialItem {
   description: string;
   emoji: string;
   whatsappMsg: string;
+  image?: string;
 }
 
 const tabs: { key: TabKey; label: string; icon: string }[] = [
@@ -26,6 +28,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Traditional Telugu sambar masala with roasted dal, chilli & coriander. Perfect for authentic sambar.",
       emoji: "🍲",
       whatsappMsg: "I want to order Sambar Powder",
+      image: "/images/specials/sambar-powder.png",
     },
     {
       name: "Rasam Powder",
@@ -33,6 +36,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Aromatic blend of pepper, cumin & curry leaves for the perfect tangy rasam.",
       emoji: "🥘",
       whatsappMsg: "I want to order Rasam Powder",
+      image: "/images/specials/rasam-powder.png",
     },
     {
       name: "Biryani Masala",
@@ -40,6 +44,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Hyderabadi-style biryani blend with saffron notes, whole spices ground fresh.",
       emoji: "🍚",
       whatsappMsg: "I want to order Biryani Masala",
+      image: "/images/specials/biryani-masala.png",
     },
     {
       name: "Chicken Masala",
@@ -47,20 +52,23 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Rich, bold spice mix for perfect gravy chicken curry every time.",
       emoji: "🍗",
       whatsappMsg: "I want to order Chicken Masala",
+      image: "/images/specials/chicken-masala.png",
     },
     {
-      name: "Pav Bhaji Masala",
+      name: "Mutton Masala",
       description:
-        "Street-food style blend with dried mango & Kashmiri chilli for vibrant color.",
-      emoji: "🫓",
-      whatsappMsg: "I want to order Pav Bhaji Masala",
+        "Robust blend for mutton curries and biryanis. Whole spices ground fresh for deep, rich flavor.",
+      emoji: "🍖",
+      whatsappMsg: "I want to order Mutton Masala",
+      image: "/images/specials/mutton-masala.png",
     },
     {
-      name: "Pickle Masala",
+      name: "Mirchi Masala",
       description:
-        "Special mustard-fenugreek blend for avakaya, gongura & mixed vegetable pickles.",
-      emoji: "🫙",
-      whatsappMsg: "I want to order Pickle Masala",
+        "Vibrant red chilli powder blend for curries, tadka and pickles. Hot and aromatic.",
+      emoji: "🌶️",
+      whatsappMsg: "I want to order Mirchi Masala",
+      image: "/images/specials/mirchi-masala.png",
     },
   ],
   batters: [
@@ -70,6 +78,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Perfectly fermented rice & urad dal batter for crispy golden dosas. Ready to pour!",
       emoji: "🫓",
       whatsappMsg: "I want to order Dosa Batter",
+      image: "/images/specials/dosa-batter.png",
     },
     {
       name: "Idli Batter",
@@ -77,6 +86,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Soft, fluffy idli guaranteed. Our classic batter with perfect fermentation.",
       emoji: "⚪",
       whatsappMsg: "I want to order Idli Batter",
+      image: "/images/specials/idli-batter.png",
     },
     {
       name: "Wada Batter",
@@ -84,6 +94,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Thick urad dal batter for crispy outside, soft inside medu vada.",
       emoji: "🍩",
       whatsappMsg: "I want to order Wada Batter",
+      image: "/images/specials/wada-batter.png",
     },
     {
       name: "Millet Dosa Batter",
@@ -91,6 +102,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Healthy millet-based batter for nutritious, crispy dosas. Diabetic-friendly!",
       emoji: "🌾",
       whatsappMsg: "I want to order Millet Dosa Batter",
+      image: "/images/specials/millet-dosa-batter.png",
     },
     {
       name: "Ragi Idli Batter",
@@ -98,6 +110,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Finger millet batter for protein-rich, iron-loaded healthy idlis.",
       emoji: "💪",
       whatsappMsg: "I want to order Ragi Idli Batter",
+      image: "/images/specials/ragi-idli-batter.png",
     },
     {
       name: "Pesarattu Batter",
@@ -105,6 +118,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Green moong dal batter for the famous Andhra-style pesarattu dosa.",
       emoji: "🟢",
       whatsappMsg: "I want to order Pesarattu Batter",
+      image: "/images/specials/pesarattu-batter.png",
     },
   ],
   dryfruits: [
@@ -114,6 +128,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Premium California almonds, crunchy and fresh. Great for snacking & cooking.",
       emoji: "🥜",
       whatsappMsg: "I want to order Almonds",
+      image: "/images/specials/almonds.png",
     },
     {
       name: "Cashews (Jeedipappu)",
@@ -121,6 +136,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Whole white cashews W320 grade, perfect for sweets and gravies.",
       emoji: "🫘",
       whatsappMsg: "I want to order Cashews",
+      image: "/images/specials/cashews.png",
     },
     {
       name: "Raisins (Endu Draksha)",
@@ -128,6 +144,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Sweet golden raisins for pulao, payasam & healthy snacking.",
       emoji: "🍇",
       whatsappMsg: "I want to order Raisins",
+      image: "/images/specials/raisins.png",
     },
     {
       name: "Foxtail Millet (Korra)",
@@ -135,6 +152,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Ancient grain superfood, high in iron. Perfect rice substitute for health-conscious families.",
       emoji: "🌾",
       whatsappMsg: "I want to order Foxtail Millet",
+      image: "/images/specials/foxtail-millet.png",
     },
     {
       name: "Finger Millet (Ragi)",
@@ -142,6 +160,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Calcium-rich ragi for rotis, porridge & idlis. A kids' health booster!",
       emoji: "💪",
       whatsappMsg: "I want to order Ragi",
+      image: "/images/specials/finger-millet.png",
     },
     {
       name: "Little Millet (Samalu)",
@@ -149,6 +168,7 @@ const items: Record<TabKey, SpecialItem[]> = {
         "Gluten-free superfood millet, great for upma, pulao & rice replacement.",
       emoji: "🥗",
       whatsappMsg: "I want to order Little Millet",
+      image: "/images/specials/little-millet.png",
     },
   ],
 };
@@ -171,10 +191,23 @@ function FlipCard({ item }: { item: SpecialItem }) {
       >
         {/* Front */}
         <div
-          className="flip-card-front absolute inset-0 bg-white rounded-2xl shadow-lg border border-gold/20 p-6 flex flex-col items-center justify-center"
+          className="flip-card-front absolute inset-0 bg-white rounded-2xl shadow-lg border border-gold/20 p-6 flex flex-col items-center justify-center overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <span className="text-5xl mb-4">{item.emoji}</span>
+          {item.image ? (
+            <div className="relative w-full h-32 mb-4 flex-shrink-0">
+              <Image
+                src={item.image}
+                alt={item.name}
+                fill
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="object-contain"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <span className="text-5xl mb-4">{item.emoji}</span>
+          )}
           <h3 className="font-heading font-bold text-lg text-maroon text-center">
             {item.name}
           </h3>
@@ -228,7 +261,7 @@ export default function SpecialsTabs() {
             Freshly Made
           </span>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-maroon mt-3">
-            Today&apos;s Specials
+            Our Bestsellers
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
             From aromatic masala powders to fresh batters and premium dry fruits
