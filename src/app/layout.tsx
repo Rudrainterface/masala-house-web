@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -48,7 +49,22 @@ export default function RootLayout({
         <meta name="geo.region" content="IN-TG" />
         <meta name="geo.placename" content="Hyderabad" />
       </head>
-      <body className="antialiased font-body">{children}</body>
+      <body className="antialiased font-body">
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XWFWKBX2SG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XWFWKBX2SG');
+          `}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
